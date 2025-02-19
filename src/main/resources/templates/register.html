@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en"
+      th:replace="demo::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<section>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg">
+                <div class="card-header text-center  text-black">
+                    <h4>Register</h4>
+                </div>
+
+
+                <div class="card-body">
+                    <form action="saveUser" method="post">
+
+                        <div class="mb-3">
+                            <label class="form-label">Full Name</label>
+                            <input  type="text" class="form-control" name="username" required>
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input name="email" type="email" class="form-control"  required>
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label class="form-label">Password</label>
+                            <input name="password" type="password" class="form-control"  required>
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label class="form-label">Gender</label>
+                            <select name="gender" class="form-select"  required>
+                                <option value="" selected disabled>Choose...</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label class="form-label">City</label>
+                            <input name="city" type="text" class="form-control"  required>
+                        </div>
+
+
+                        <div >
+                            <button type="submit" class="btn btn-success">Register</button>
+                        </div>
+                        <p class="login-text">Already have an account?<a href="Login.jsp" class="login">Login</a></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</section>
+</body>
+</html>
