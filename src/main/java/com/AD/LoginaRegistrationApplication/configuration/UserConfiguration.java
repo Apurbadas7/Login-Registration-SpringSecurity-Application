@@ -5,7 +5,9 @@ import com.AD.LoginaRegistrationApplication.Service.UserService;
 import com.AD.LoginaRegistrationApplication.Service.UserServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -41,24 +43,26 @@ public class UserConfiguration {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authenticationProvider(getDaoAuthenticationProvider())
-                .csrf().disable()
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/register", "/login", "/saveUser", "/").permitAll()
-                        .anyRequest().authenticated()).
-
-                        formLogin()
-                                .loginPage("/login")
-                                .loginProcessingUrl("/login")
-                                .usernameParameter("email")
-                                .passwordParameter("password")
-                .defaultSuccessUrl("/profile")
-
-
-                                .permitAll();
-
-
-        return http.build();
+        return http.authenticationProvider(getDaoAuthenticationProvider())
+                .csrf(csrf->csrf.disable())
+                .authorizeHttpRequests(auth->auth
+                        .requestMatchers("api/login","/register","/login","/saveUser","/","/forgot","/send_otp","/verifyOTP","/password_change").permitAll()
+                        .anyRequest().authenticated() )
+                .formLogin(form->form
+                        .loginPage("/login")
+                        .loginProcessingUrl("/login")
+                        .usernameParameter("email")
+                        .passwordParameter("password")
+                        .defaultSuccessUrl("/profile",true)
+                        .permitAll()).build();
     }
+
+@Bean
+public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
+    return configuration.getAuthenticationManager();
+
 }
 
+
+
+}

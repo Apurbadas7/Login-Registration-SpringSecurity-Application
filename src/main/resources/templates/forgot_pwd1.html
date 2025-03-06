@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en"
+      th:replace="demo::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section style="margin-top: 80px;">
+  <div class="container">
+
+    <div class="row justify-content-center">
+      <div class="col-md-5">
+        <div class="card shadow-lg">
+          <h3 class="text-center mt-3">Your Registered Gmail</h3>
+
+
+          <div class="card-body">
+            <form th:action="@{/send_otp}" method="post">
+              <div class="mb-3">
+                <input name="email" type="email" class="form-control" id="inputEmail4" placeholder="Enter your Email" required>
+              </div>
+
+
+              <div class="text-center">
+                <button type="submit" class="btn btn-success py-2 px-4" style="height: 40px;">Send OTP</button>
+              </div>
+
+              <br>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+</body>
+</html>

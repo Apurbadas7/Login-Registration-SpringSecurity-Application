@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en"
-      th:replace="demo::layout(~{::section})">
+      th:replace=~{demo::layout(~{::section})}
+>
 <head>
     <meta charset="UTF-8">
     <title>Test Page</title>
@@ -30,6 +31,8 @@
                                 <input name="password" type="password" class="form-control" id="inputPassword" required>
                             </div>
                             <input type="submit" value="Login" class="button"><br><br>
+                            <a th:href="@{/forgot}">Forgot Password?</a>
+
                         </form>
                     </div>
                 </div>
